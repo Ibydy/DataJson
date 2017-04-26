@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="filterApp" ng-controller="filterAppController">
+
+<span ng-repeat="tag in tags" ng-bind="tag.tag" ng-click="tag.isActive = !tag.isActive"
+      class="tag" ng-class="{'tag-active':tag.isActive}"></span>
+
+<table cellpadding="4" cellspacing="1">
+    <tr>
+        <th ng-repeat="header in columnHeaders" ng-bind="header"></th>
+    </tr>
+    <tr ng-repeat="document in documents | orderBy:'name' | filter: filterExpression">
+        <td ng-repeat="header in columnHeaders " ng-bind="document[header]"></td>
+    </tr>
+</table>
+</body>
+</html>
